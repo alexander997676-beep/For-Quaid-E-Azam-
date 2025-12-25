@@ -3,181 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The King Without a Crown</title>
-    <!-- Icons for the Crown -->
+    <title>The Architect of Pakistan | Quaid-e-Azam</title>
+    
+    <!-- Icons and Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Royal Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fauna+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. THE ROYAL THEME --- */
+        /* --- 1. SETTINGS & COLORS --- */
         :root {
-            --royal-green: #002211;
-            --emerald: #004d26;
-            --gold: #FFD700; /* Pure Gold */
-            --gold-gradient: linear-gradient(135deg, #FFD700, #BF953F, #FCF6BA, #B38728);
-            --black-glass: rgba(0, 0, 0, 0.7);
+            --pak-green: #002914;
+            --deep-black: #050505;
+            --gold-primary: #FFD700;
+            --gold-secondary: #B8860B;
+            --text-silver: #e0e0e0;
         }
 
         body {
             margin: 0;
-            padding: 0;
             min-height: 100vh;
-            background-color: var(--royal-green);
-            background-image: 
-                radial-gradient(circle at 50% 0%, #004d26 0%, #000000 80%);
-            font-family: 'Fauna One', serif;
+            background: radial-gradient(circle at center, var(--pak-green), var(--deep-black));
+            color: white;
+            font-family: 'Playfair Display', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
             overflow-x: hidden;
         }
 
-        /* --- 2. MAIN CARD --- */
-        .royal-card {
+        /* --- 2. BACKGROUND ANIMATION (STARS) --- */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.3;
+            animation: starMove 100s linear infinite;
+        }
+        @keyframes starMove { from { background-position: 0 0, 40px 60px, 130px 270px; } to { background-position: 550px 550px, 390px 410px, 680px 820px; } }
+
+        /* --- 3. MAIN CARD CONTAINER --- */
+        .card {
             position: relative;
             width: 90%;
-            max-width: 800px;
-            background: var(--black-glass);
-            border: 2px solid #BF953F;
-            border-radius: 30px;
-            padding: 60px 30px;
+            max-width: 850px;
+            background: rgba(0, 20, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 50px 30px;
             text-align: center;
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), 
-                        inset 0 0 30px rgba(191, 149, 63, 0.2);
-            backdrop-filter: blur(10px);
-            margin-top: 50px;
-            margin-bottom: 50px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,0,0,0.5);
+            margin: 40px 0;
+            animation: fadeInUp 1.5s ease-out;
         }
 
-        /* Decorative Corners */
-        .corner {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--gold);
-            transition: 0.3s;
-        }
-        .top-left { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
-        .top-right { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
-        .bottom-left { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
-        .bottom-right { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
+        /* Decorative Gold Border Lines */
+        .card::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 15px; pointer-events: none; }
 
-        /* --- 3. PICTURE & CROWN SETUP --- */
-        .portrait-container {
+        /* --- 4. IMAGE & CROWN (THE KEY PART) --- */
+        .img-wrapper {
             position: relative;
-            width: 220px;
-            height: 220px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto 40px;
         }
 
-        /* The Picture */
-        .portrait {
+        .profile-pic {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 5px solid var(--gold);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            border: 4px solid var(--gold-primary);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        /* The Crown 👑 */
-        .crown-icon {
+        /* The Animated Crown 👑 */
+        .crown {
             position: absolute;
-            top: -75px; /* Adjust height above head */
+            top: -75px; /* Floats above head */
             left: 50%;
             transform: translateX(-50%);
-            font-size: 5rem; /* Big Size */
-            color: var(--gold);
-            z-index: 10;
-            /* Make it look shiny */
-            background: var(--gold-gradient);
+            font-size: 5rem;
+            background: linear-gradient(to bottom, #FFD700, #ffec8b, #B8860B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
-            animation: floatCrown 4s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8));
+            animation: floatCrown 3s ease-in-out infinite;
+            z-index: 10;
         }
 
         @keyframes floatCrown {
-            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
-            50% { transform: translateX(-50%) translateY(-10px) rotate(-2deg); }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* --- 4. TYPOGRAPHY --- */
-        h1 {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 3rem;
+        /* --- 5. TYPOGRAPHY & POWERFUL LINES --- */
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
             margin: 0;
-            background: var(--gold-gradient);
+            font-weight: 900;
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 5px 10px rgba(0,0,0,0.5);
             letter-spacing: 2px;
         }
 
-        h2 {
-            font-size: 1.2rem;
-            color: #ccc;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(191, 149, 63, 0.3);
-            display: inline-block;
-            padding-bottom: 10px;
+        .urdu-poetry {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 20px 0;
+            line-height: 2;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+            direction: rtl;
         }
 
-        .quote {
+        .powerful-text {
             font-size: 1.2rem;
-            line-height: 1.6;
-            color: #e0e0e0;
+            color: var(--text-silver);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 30px;
             font-style: italic;
-            max-width: 600px;
-            margin: 0 auto 40px;
         }
 
-        /* --- 5. GOLD BUTTON --- */
-        .royal-btn {
+        .highlight { color: var(--gold-primary); font-weight: bold; }
+
+        /* --- 6. GOLD BUTTON --- */
+        .btn-gold {
             background: transparent;
-            color: var(--gold);
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.2rem;
-            padding: 15px 50px;
-            border: 2px solid var(--gold);
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            border: 2px solid var(--gold-primary);
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.2);
         }
 
-        .royal-btn:hover {
-            background: var(--gold);
+        .btn-gold:hover {
+            background: var(--gold-primary);
             color: #000;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
             transform: translateY(-3px);
         }
 
-        /* --- 6. VIDEO SECTION --- */
-        .video-vault {
+        /* --- 7. VIDEO SECTION --- */
+        .video-container {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 1s cubic-bezier(0.2, 1, 0.2, 1), opacity 0.5s;
             opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 30px;
         }
 
-        .video-vault.open {
+        .video-container.show {
             max-height: 1000px;
             opacity: 1;
         }
 
-        .grid {
+        .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.3);
             padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255,255,255,0.1);
@@ -185,88 +189,105 @@
 
         video {
             width: 100%;
-            border-radius: 10px;
-            border: 2px solid #555;
-            transition: 0.3s;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #444;
         }
 
-        video:hover {
-            border-color: var(--gold);
+        .vid-caption {
+            color: var(--gold-primary);
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-family: 'Cinzel', serif;
         }
 
-        /* Mobile Adjustments */
+        /* Animation Keyframes */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Responsive */
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .crown-icon { font-size: 4rem; top: -60px; }
-            .portrait-container { width: 160px; height: 160px; }
-            .royal-card { padding: 40px 20px; width: 85%; }
+            .main-title { font-size: 2.2rem; }
+            .urdu-poetry { font-size: 1.1rem; }
+            .crown { font-size: 4rem; top: -60px; }
+            .img-wrapper { width: 160px; height: 160px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="royal-card">
-        <!-- Decorative Corners -->
-        <div class="corner top-left"></div>
-        <div class="corner top-right"></div>
-        <div class="corner bottom-left"></div>
-        <div class="corner bottom-right"></div>
+    <!-- Background Stars -->
+    <div class="stars"></div>
 
-        <!-- Portrait with Crown -->
-        <div class="portrait-container">
-            <!-- The Crown Icon -->
-            <i class="fa-solid fa-crown crown-icon"></i>
-            <!-- The Image -->
-            <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="portrait">
+    <div class="card">
+        
+        <!-- Image with Crown -->
+        <div class="img-wrapper">
+            <i class="fa-solid fa-crown crown"></i>
+            <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="profile-pic">
         </div>
 
-        <h1>Quaid-e-Azam</h1>
-        <h2>Muhammad Ali Jinnah</h2>
+        <!-- Title -->
+        <h1 class="main-title">Quaid-e-Azam</h1>
+        <h3 style="color:#aaa; letter-spacing:4px; text-transform:uppercase; margin-top:0;">Muhammad Ali Jinnah</h3>
 
-        <div class="quote">
-            "We have our own history, our own customs, our own culture, our own music, our own art... we have our own distinctive outlook on life and of life."
+        <hr style="width: 100px; border: 1px solid var(--gold-primary); margin: 20px auto; opacity: 0.5;">
+
+        <!-- Urdu Poetry (Powerful Lines) -->
+        <div class="urdu-poetry">
+            ہزاروں سال نرگس اپنی بے نوری پہ روتی ہے<br>
+            بڑی مشکل سے ہوتا ہے چمن میں دیدہ ور پیدا
         </div>
+
+        <!-- English Tribute (Powerful Lines) -->
+        <p class="powerful-text">
+            He was the <strong>Architect of the Impossible</strong>. Standing alone against the tides of history, he carved a nation not with a sword, but with the power of his pen and character.
+            <br><br>
+            <span class="highlight">"There is no power on earth that can undo Pakistan."</span>
+        </p>
 
         <!-- Button -->
-        <button class="royal-btn" onclick="toggleVault()" id="btnText">
-            Open Archives
+        <button class="btn-gold" onclick="toggleHistory()" id="actionBtn">
+            <i class="fas fa-play" style="margin-right:10px; font-size:0.8rem;"></i> Watch History
         </button>
 
         <!-- Videos -->
-        <div class="video-vault" id="vault">
-            <div class="grid">
+        <div class="video-container" id="historyVault">
+            <div class="video-grid">
                 <div>
-                    <p style="color:var(--gold); font-size:0.9rem;">VISIONARY</p>
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/twonationstheoryjinn.mp4" type="video/mp4">
                     </video>
+                    <div class="vid-caption">THE TWO NATION THEORY</div>
                 </div>
                 <div>
-                    <p style="color:var(--gold); font-size:0.9rem;">LEADER</p>
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/tealauraofquaid-e-az.mp4" type="video/mp4">
                     </video>
+                    <div class="vid-caption">RARE FOOTAGE OF QUAID</div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
-        function toggleVault() {
-            const vault = document.getElementById('vault');
-            const btn = document.getElementById('btnText');
+        function toggleHistory() {
+            const vault = document.getElementById('historyVault');
+            const btn = document.getElementById('actionBtn');
             
-            if (vault.classList.contains('open')) {
-                vault.classList.remove('open');
-                btn.innerHTML = "Open Archives";
+            if (vault.classList.contains('show')) {
+                // Hide
+                vault.classList.remove('show');
+                btn.innerHTML = '<i class="fas fa-play" style="margin-right:10px; font-size:0.8rem;"></i> Watch History';
                 // Stop videos
-                document.querySelectorAll('video').forEach(vid => vid.pause());
+                const videos = document.querySelectorAll('video');
+                videos.forEach(video => video.pause());
             } else {
-                vault.classList.add('open');
-                btn.innerHTML = "Close Archives";
+                // Show
+                vault.classList.add('show');
+                btn.innerHTML = '<i class="fas fa-times" style="margin-right:10px; font-size:0.8rem;"></i> Close Archives';
             }
         }
     </script>
-
 </body>
 </html>
