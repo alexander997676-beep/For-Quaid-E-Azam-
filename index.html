@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Architect of Pakistan | Quaid-e-Azam</title>
+    <title>Tribute to Quaid-e-Azam | Designed by M. Faizan Ahmed</title>
     
     <!-- Icons and Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -15,7 +15,6 @@
             --pak-green: #002914;
             --deep-black: #050505;
             --gold-primary: #FFD700;
-            --gold-secondary: #B8860B;
             --text-silver: #e0e0e0;
         }
 
@@ -26,9 +25,11 @@
             color: white;
             font-family: 'Playfair Display', serif;
             display: flex;
+            flex-direction: column; 
             justify-content: center;
             align-items: center;
             overflow-x: hidden;
+            padding: 20px;
         }
 
         /* --- 2. BACKGROUND ANIMATION (STARS) --- */
@@ -38,19 +39,16 @@
             pointer-events: none;
             background-image: 
                 radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            background-position: 0 0, 40px 60px, 130px 270px;
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px);
+            background-size: 550px 550px, 350px 350px;
             opacity: 0.3;
-            animation: starMove 100s linear infinite;
+            z-index: -1;
         }
-        @keyframes starMove { from { background-position: 0 0, 40px 60px, 130px 270px; } to { background-position: 550px 550px, 390px 410px, 680px 820px; } }
 
         /* --- 3. MAIN CARD CONTAINER --- */
         .card {
             position: relative;
-            width: 90%;
+            width: 100%;
             max-width: 850px;
             background: rgba(0, 20, 10, 0.6);
             backdrop-filter: blur(20px);
@@ -58,15 +56,12 @@
             border-radius: 20px;
             padding: 50px 30px;
             text-align: center;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8), inset 0 0 30px rgba(0,0,0,0.5);
-            margin: 40px 0;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
             animation: fadeInUp 1.5s ease-out;
         }
 
-        /* Decorative Gold Border Lines */
-        .card::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 15px; pointer-events: none; }
-
-        /* --- 4. IMAGE & CROWN (THE KEY PART) --- */
+        /* --- 4. IMAGE & CROWN --- */
         .img-wrapper {
             position: relative;
             width: 200px;
@@ -83,19 +78,17 @@
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
-        /* The Animated Crown 👑 */
         .crown {
             position: absolute;
-            top: -75px; /* Floats above head */
+            top: -75px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 5rem;
-            background: linear-gradient(to bottom, #FFD700, #ffec8b, #B8860B);
+            background: linear-gradient(to bottom, #FFD700, #B8860B);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.8));
             animation: floatCrown 3s ease-in-out infinite;
-            z-index: 10;
         }
 
         @keyframes floatCrown {
@@ -103,64 +96,51 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* --- 5. TYPOGRAPHY & POWERFUL LINES --- */
+        /* --- 5. TEXT STYLES --- */
         .main-title {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin: 0;
-            font-weight: 900;
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 5px 10px rgba(0,0,0,0.5);
-            letter-spacing: 2px;
         }
 
         .urdu-poetry {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #fff;
             margin: 20px 0;
             line-height: 2;
-            text-shadow: 0 0 10px rgba(255,255,255,0.3);
-            direction: rtl;
         }
 
         .powerful-text {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-silver);
             line-height: 1.8;
             max-width: 700px;
             margin: 0 auto 30px;
-            font-style: italic;
         }
 
-        .highlight { color: var(--gold-primary); font-weight: bold; }
-
-        /* --- 6. GOLD BUTTON --- */
+        /* --- 6. BUTTON --- */
         .btn-gold {
             background: transparent;
             color: var(--gold-primary);
             font-family: 'Cinzel', serif;
             font-weight: bold;
-            font-size: 1.1rem;
             padding: 15px 40px;
             border: 2px solid var(--gold-primary);
             border-radius: 50px;
             cursor: pointer;
             transition: 0.4s;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(184, 134, 11, 0.2);
         }
 
         .btn-gold:hover {
             background: var(--gold-primary);
             color: #000;
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
 
         /* --- 7. VIDEO SECTION --- */
@@ -168,7 +148,7 @@
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s ease;
             margin-top: 30px;
         }
 
@@ -179,35 +159,41 @@
 
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             background: rgba(0,0,0,0.3);
             padding: 20px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         video {
             width: 100%;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border: 1px solid #444;
         }
 
-        .vid-caption {
-            color: var(--gold-primary);
-            margin-top: 10px;
-            font-size: 0.9rem;
-            font-family: 'Cinzel', serif;
+        /* --- 8. FOOTER (DESIGNED BY) - GOLDEN --- */
+        .footer-credit {
+            margin-top: 20px;
+            font-family: 'Cinzel', serif; /* Font match kiya */
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            
+            /* GOLD COLOR & GLOW */
+            color: #FFD700; 
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            font-weight: bold;
+            
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 1;
         }
 
-        /* Animation Keyframes */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .main-title { font-size: 2.2rem; }
-            .urdu-poetry { font-size: 1.1rem; }
+            .main-title { font-size: 2rem; }
             .crown { font-size: 4rem; top: -60px; }
             .img-wrapper { width: 160px; height: 160px; }
         }
@@ -228,26 +214,26 @@
 
         <!-- Title -->
         <h1 class="main-title">Quaid-e-Azam</h1>
-        <h3 style="color:#aaa; letter-spacing:4px; text-transform:uppercase; margin-top:0;">Muhammad Ali Jinnah</h3>
+        <h3 style="color:#aaa; letter-spacing:4px; text-transform:uppercase; margin-top:5px; font-size:0.9rem;">Muhammad Ali Jinnah</h3>
 
         <hr style="width: 100px; border: 1px solid var(--gold-primary); margin: 20px auto; opacity: 0.5;">
 
-        <!-- Urdu Poetry (Powerful Lines) -->
+        <!-- Urdu Poetry -->
         <div class="urdu-poetry">
             ہزاروں سال نرگس اپنی بے نوری پہ روتی ہے<br>
             بڑی مشکل سے ہوتا ہے چمن میں دیدہ ور پیدا
         </div>
 
-        <!-- English Tribute (Powerful Lines) -->
+        <!-- English Tribute -->
         <p class="powerful-text">
             He was the <strong>Architect of the Impossible</strong>. Standing alone against the tides of history, he carved a nation not with a sword, but with the power of his pen and character.
             <br><br>
-            <span class="highlight">"There is no power on earth that can undo Pakistan."</span>
+            <span style="color:var(--gold-primary);">"There is no power on earth that can undo Pakistan."</span>
         </p>
 
         <!-- Button -->
         <button class="btn-gold" onclick="toggleHistory()" id="actionBtn">
-            <i class="fas fa-play" style="margin-right:10px; font-size:0.8rem;"></i> Watch History
+            Watch History
         </button>
 
         <!-- Videos -->
@@ -257,17 +243,22 @@
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/twonationstheoryjinn.mp4" type="video/mp4">
                     </video>
-                    <div class="vid-caption">THE TWO NATION THEORY</div>
+                    <p style="font-size:0.8rem; color:var(--gold-primary); margin-top:5px;">TWO NATION THEORY</p>
                 </div>
                 <div>
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/tealauraofquaid-e-az.mp4" type="video/mp4">
                     </video>
-                    <div class="vid-caption">RARE FOOTAGE OF QUAID</div>
+                    <p style="font-size:0.8rem; color:var(--gold-primary); margin-top:5px;">RARE FOOTAGE</p>
                 </div>
             </div>
         </div>
 
+    </div>
+
+    <!-- DESIGNER CREDIT (GOLDEN) -->
+    <div class="footer-credit">
+        DESIGNED BY MUHAMMAD FAIZAN AHMED
     </div>
 
     <script>
@@ -276,16 +267,12 @@
             const btn = document.getElementById('actionBtn');
             
             if (vault.classList.contains('show')) {
-                // Hide
                 vault.classList.remove('show');
-                btn.innerHTML = '<i class="fas fa-play" style="margin-right:10px; font-size:0.8rem;"></i> Watch History';
-                // Stop videos
-                const videos = document.querySelectorAll('video');
-                videos.forEach(video => video.pause());
+                btn.innerText = 'Watch History';
+                document.querySelectorAll('video').forEach(video => video.pause());
             } else {
-                // Show
                 vault.classList.add('show');
-                btn.innerHTML = '<i class="fas fa-times" style="margin-right:10px; font-size:0.8rem;"></i> Close Archives';
+                btn.innerText = 'Close Archives';
             }
         }
     </script>
