@@ -3,311 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Great Leader | 2025 Tribute</title>
-    <!-- Premium Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>The King Without a Crown</title>
+    <!-- Icons for the Crown -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Royal Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Fauna+One&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. CORE VARIABLES --- */
+        /* --- 1. THE ROYAL THEME --- */
         :root {
-            --pak-green: #003016;
-            --pak-light-green: #005f2b;
-            --gold: #c5a059;
-            --gold-glow: #e6c888;
-            --white: #ffffff;
-            --glass: rgba(0, 30, 15, 0.85);
+            --royal-green: #002211;
+            --emerald: #004d26;
+            --gold: #FFD700; /* Pure Gold */
+            --gold-gradient: linear-gradient(135deg, #FFD700, #BF953F, #FCF6BA, #B38728);
+            --black-glass: rgba(0, 0, 0, 0.7);
         }
 
-        /* --- 2. ANIMATED BACKGROUND --- */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--pak-green);
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 80% 80%, rgba(200, 160, 89, 0.1) 0%, transparent 20%);
-            color: var(--white);
             min-height: 100vh;
+            background-color: var(--royal-green);
+            background-image: 
+                radial-gradient(circle at 50% 0%, #004d26 0%, #000000 80%);
+            font-family: 'Fauna One', serif;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
             overflow-x: hidden;
         }
 
-        /* --- 3. MAIN CONTAINER (GLASS CARD) --- */
+        /* --- 2. MAIN CARD --- */
         .royal-card {
             position: relative;
             width: 90%;
-            max-width: 900px;
-            background: var(--glass);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(197, 160, 89, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 50px;
+            max-width: 800px;
+            background: var(--black-glass);
+            border: 2px solid #BF953F;
+            border-radius: 30px;
+            padding: 60px 30px;
             text-align: center;
-            margin: 40px 0;
-            overflow: hidden;
-            animation: slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), 
+                        inset 0 0 30px rgba(191, 149, 63, 0.2);
+            backdrop-filter: blur(10px);
+            margin-top: 50px;
+            margin-bottom: 50px;
         }
 
-        /* Decorative Gold Corner Borders */
-        .royal-card::before, .royal-card::after {
-            content: '';
+        /* Decorative Corners */
+        .corner {
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid var(--gold);
-            transition: all 0.5s ease;
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--gold);
+            transition: 0.3s;
         }
-        .royal-card::before { top: 20px; left: 20px; border-right: none; border-bottom: none; }
-        .royal-card::after { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+        .top-left { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
+        .top-right { top: 15px; right: 15px; border-left: 0; border-bottom: 0; }
+        .bottom-left { bottom: 15px; left: 15px; border-right: 0; border-top: 0; }
+        .bottom-right { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
 
-        /* --- 4. IMAGE STYLING --- */
-        .image-wrapper {
+        /* --- 3. PICTURE & CROWN SETUP --- */
+        .portrait-container {
             position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 40px;
         }
 
-        .profile-pic {
+        /* The Picture */
+        .portrait {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid var(--gold);
-            box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
-            animation: pulseGlow 3s infinite alternate;
+            border: 5px solid var(--gold);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
         }
 
-        /* Crown Icon Overlay */
+        /* The Crown 👑 */
         .crown-icon {
             position: absolute;
-            top: -25px;
+            top: -75px; /* Adjust height above head */
             left: 50%;
             transform: translateX(-50%);
+            font-size: 5rem; /* Big Size */
             color: var(--gold);
-            font-size: 2rem;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
-        }
-
-        /* --- 5. TEXT STYLING --- */
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
-            margin: 0;
-            color: var(--white);
-            letter-spacing: 5px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            background: linear-gradient(to right, #fff, #c5a059, #fff);
+            z-index: 10;
+            /* Make it look shiny */
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+            animation: floatCrown 4s ease-in-out infinite;
         }
 
-        .subtitle {
+        @keyframes floatCrown {
+            0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+            50% { transform: translateX(-50%) translateY(-10px) rotate(-2deg); }
+        }
+
+        /* --- 4. TYPOGRAPHY --- */
+        h1 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 3rem;
+            margin: 0;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        h2 {
             font-size: 1.2rem;
-            color: var(--gold);
+            color: #ccc;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            letter-spacing: 4px;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(191, 149, 63, 0.3);
             display: inline-block;
             padding-bottom: 10px;
         }
 
-        .motto-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .motto-box {
-            background: rgba(255,255,255,0.05);
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-        }
-
-        .desc {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #ddd;
-        }
-
-        /* --- 6. BUTTON STYLING --- */
-        .btn-gold {
-            background: linear-gradient(45deg, var(--gold), #a08035);
-            color: #000;
-            border: none;
-            padding: 18px 50px;
+        .quote {
             font-size: 1.2rem;
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
+            line-height: 1.6;
+            color: #e0e0e0;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* --- 5. GOLD BUTTON --- */
+        .royal-btn {
+            background: transparent;
+            color: var(--gold);
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.2rem;
+            padding: 15px 50px;
+            border: 2px solid var(--gold);
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 15px rgba(191, 149, 63, 0.2);
         }
 
-        .btn-gold:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.4);
+        .royal-btn:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            transform: translateY(-3px);
         }
 
-        .btn-gold::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-gold:hover::after {
-            left: 100%;
-        }
-
-        /* --- 7. VIDEO SECTION --- */
-        #video-panel {
+        /* --- 6. VIDEO SECTION --- */
+        .video-vault {
             max-height: 0;
-            opacity: 0;
             overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transition: max-height 1s cubic-bezier(0.2, 1, 0.2, 1), opacity 0.5s;
+            opacity: 0;
             margin-top: 30px;
         }
 
-        #video-panel.active {
-            max-height: 1200px;
+        .video-vault.open {
+            max-height: 1000px;
             opacity: 1;
         }
 
-        .vid-grid {
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            background: rgba(0,0,0,0.5);
             padding: 20px;
-            background: rgba(0,0,0,0.3);
             border-radius: 15px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         video {
             width: 100%;
-            border-radius: 8px;
-            border: 1px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            border: 2px solid #555;
+            transition: 0.3s;
         }
 
-        .vid-label {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--gold);
-            font-style: italic;
+        video:hover {
+            border-color: var(--gold);
         }
 
-        /* --- 8. ANIMATIONS --- */
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes pulseGlow {
-            from { box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
-            to { box-shadow: 0 0 30px rgba(197, 160, 89, 0.6); border-color: var(--gold-glow); }
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .vid-grid { grid-template-columns: 1fr; }
-            .royal-card { padding: 30px 20px; width: 95%; }
-            .royal-card::before, .royal-card::after { display: none; } /* Hide corners on small screens */
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .crown-icon { font-size: 4rem; top: -60px; }
+            .portrait-container { width: 160px; height: 160px; }
+            .royal-card { padding: 40px 20px; width: 85%; }
         }
     </style>
 </head>
 <body>
 
     <div class="royal-card">
-        <!-- Picture Area -->
-        <div class="image-wrapper">
-            <i class="fas fa-crown crown-icon"></i>
-            <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="profile-pic">
+        <!-- Decorative Corners -->
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <!-- Portrait with Crown -->
+        <div class="portrait-container">
+            <!-- The Crown Icon -->
+            <i class="fa-solid fa-crown crown-icon"></i>
+            <!-- The Image -->
+            <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="portrait">
         </div>
 
-        <!-- Titles -->
         <h1>Quaid-e-Azam</h1>
-        <div class="subtitle">Muhammad Ali Jinnah (RA)</div>
+        <h2>Muhammad Ali Jinnah</h2>
 
-        <!-- The 3 Pillars -->
-        <div class="motto-container">
-            <div class="motto-box">UNITY</div>
-            <div class="motto-box">FAITH</div>
-            <div class="motto-box">DISCIPLINE</div>
+        <div class="quote">
+            "We have our own history, our own customs, our own culture, our own music, our own art... we have our own distinctive outlook on life and of life."
         </div>
-
-        <!-- Description -->
-        <p class="desc">
-            "With faith, discipline and selfless devotion to duty, there is nothing worthwhile that you cannot achieve." 
-            <br><br>
-            A tribute to the visionary who altered the course of history and carved a nation on the world map.
-        </p>
 
         <!-- Button -->
-        <button class="btn-gold" onclick="toggleCinema()" id="cinemaBtn">
-            <i class="fas fa-play-circle" style="margin-right:10px;"></i> Watch History
+        <button class="royal-btn" onclick="toggleVault()" id="btnText">
+            Open Archives
         </button>
 
         <!-- Videos -->
-        <div id="video-panel">
-            <div class="vid-grid">
+        <div class="video-vault" id="vault">
+            <div class="grid">
                 <div>
+                    <p style="color:var(--gold); font-size:0.9rem;">VISIONARY</p>
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/twonationstheoryjinn.mp4" type="video/mp4">
                     </video>
-                    <div class="vid-label">The Two Nation Theory</div>
                 </div>
                 <div>
+                    <p style="color:var(--gold); font-size:0.9rem;">LEADER</p>
                     <video controls controlsList="nodownload">
                         <source src="https://n.f-a-k.workers.dev/tealauraofquaid-e-az.mp4" type="video/mp4">
                     </video>
-                    <div class="vid-label">Rare Historical Footage</div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleCinema() {
-            const panel = document.getElementById('video-panel');
-            const btn = document.getElementById('cinemaBtn');
-            const icon = btn.querySelector('i');
-
-            if (panel.classList.contains('active')) {
-                panel.classList.remove('active');
-                btn.innerHTML = '<i class="fas fa-play-circle" style="margin-right:10px;"></i> Watch History';
-                // Pause videos
+        function toggleVault() {
+            const vault = document.getElementById('vault');
+            const btn = document.getElementById('btnText');
+            
+            if (vault.classList.contains('open')) {
+                vault.classList.remove('open');
+                btn.innerHTML = "Open Archives";
+                // Stop videos
                 document.querySelectorAll('video').forEach(vid => vid.pause());
             } else {
-                panel.classList.add('active');
-                btn.innerHTML = '<i class="fas fa-times-circle" style="margin-right:10px;"></i> Close Gallery';
+                vault.classList.add('open');
+                btn.innerHTML = "Close Archives";
             }
         }
     </script>
+
 </body>
 </html>
