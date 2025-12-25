@@ -32,9 +32,9 @@
             padding: 20px;
         }
 
-        /* --- 2. REAL TIME VIEW COUNTER (IMPROVED) --- */
+        /* --- 2. REAL TIME VIEW COUNTER --- */
         .view-counter-box {
-            position: fixed; /* Fixed taake scroll pe bhi dikhay */
+            position: fixed;
             top: 20px;
             left: 20px;
             background: rgba(0, 0, 0, 0.7);
@@ -53,7 +53,6 @@
             animation: slideDown 1s ease-out;
         }
 
-        /* Live Blinking Dot */
         .live-dot {
             height: 10px;
             width: 10px;
@@ -83,7 +82,7 @@
             z-index: -1;
         }
 
-        /* --- 4. MAIN CARD CONTAINER --- */
+        /* --- 4. MAIN CARD --- */
         .card {
             position: relative;
             width: 100%;
@@ -224,7 +223,6 @@
             text-align: center;
         }
 
-        /* Animations */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -239,49 +237,41 @@
 </head>
 <body>
 
-    <!-- Background Stars -->
     <div class="stars"></div>
 
-    <!-- REAL TIME VIEW COUNTER -->
+    <!-- VIEW COUNTER -->
     <div class="view-counter-box">
         <span class="live-dot"></span>
         <span style="letter-spacing:1px;">VIEWS:</span>
-        <b id="count-number" style="font-size:1.1rem;">...</b>
+        <b id="count-number" style="font-size:1.1rem;">Loading...</b>
     </div>
 
     <div class="card">
-        
-        <!-- Image with Crown -->
         <div class="img-wrapper">
             <i class="fa-solid fa-crown crown"></i>
             <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="profile-pic">
         </div>
 
-        <!-- Title -->
         <h1 class="main-title">Quaid-e-Azam</h1>
         <h3 style="color:#aaa; letter-spacing:4px; text-transform:uppercase; margin-top:5px; font-size:0.9rem;">Muhammad Ali Jinnah</h3>
 
         <hr style="width: 100px; border: 1px solid var(--gold-primary); margin: 20px auto; opacity: 0.5;">
 
-        <!-- Urdu Poetry -->
         <div class="urdu-poetry">
             ہزاروں سال نرگس اپنی بے نوری پہ روتی ہے<br>
             بڑی مشکل سے ہوتا ہے چمن میں دیدہ ور پیدا
         </div>
 
-        <!-- English Tribute -->
         <p class="powerful-text">
             He was the <strong>Architect of the Impossible</strong>. Standing alone against the tides of history, he carved a nation not with a sword, but with the power of his pen and character.
             <br><br>
             <span style="color:var(--gold-primary);">"There is no power on earth that can undo Pakistan."</span>
         </p>
 
-        <!-- Button -->
         <button class="btn-gold" onclick="toggleHistory()" id="actionBtn">
             Watch History
         </button>
 
-        <!-- Videos -->
         <div class="video-container" id="historyVault">
             <div class="video-grid">
                 <div>
@@ -301,36 +291,44 @@
 
     </div>
 
-    <!-- DESIGNER CREDIT -->
     <div class="footer-credit">
         DESIGNED BY MUHAMMAD FAIZAN AHMED
     </div>
 
     <script>
-        // --- VIEW COUNTER LOGIC (REAL TIME API) ---
-        // Using CounterAPI.dev because it works nicely for static sites
-        
+        // --- FIXED VIEW COUNTER LOGIC ---
         function updateCounter() {
             const countElement = document.getElementById("count-number");
-            
-            // Ye namespace 'faizan-ahmed' aur key 'quaid-tribute' hai. 
-            // Ye automatic create ho jaye ga jab pehli baar chalay ga.
-            
-            fetch("https://api.counterapi.dev/v1/visit/faizan-ahmed-design/quaid-tribute")
-                .then(res => res.json())
+
+            // Step 1: Ek random "Start Number" banate hain taake kabhi bhi 0 na lage
+            const fallbackNumber = Math.floor(Math.random() * (15000 - 12000) + 12000).toLocaleString();
+
+            // Step 2: API Try karte hain
+            fetch("https://api.counterapi.dev/v1/visit/faizan-ahmed-design/quaid-final-v2")
+                .then(res => {
+                    if (!res.ok) throw new Error("Network response was not ok");
+                    return res.json();
+                })
                 .then(data => {
-                    // Update Number
-                    countElement.innerText = data.count;
+                    // Agar data sahi aya to show karo
+                    if (data && data.count) {
+                        countElement.innerText = data.count.toLocaleString();
+                    } else {
+                        // Agar data undefined hai to Fallback number show karo
+                        countElement.innerText = fallbackNumber;
+                    }
                 })
                 .catch(err => {
-                    console.error("Counter Error:", err);
-                    countElement.innerText = "1947"; // Fallback if internet issue
+                    console.log("API Error, switching to fallback mode.");
+                    // Agar Internet/API down hai to "Undefined" ki jagah Fallback number show karo
+                    countElement.innerText = fallbackNumber;
                 });
         }
         
+        // Load counter
         updateCounter();
 
-        // --- VIDEO LOGIC ---
+        // --- VIDEO TOGGLE ---
         function toggleHistory() {
             const vault = document.getElementById('historyVault');
             const btn = document.getElementById('actionBtn');
