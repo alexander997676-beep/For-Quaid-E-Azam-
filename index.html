@@ -32,44 +32,7 @@
             padding: 20px;
         }
 
-        /* --- 2. REAL TIME VIEW COUNTER --- */
-        .view-counter-box {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid var(--gold-primary);
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Cinzel', serif;
-            color: var(--gold-primary);
-            font-size: 0.9rem;
-            z-index: 9999;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(8px);
-            animation: slideDown 1s ease-out;
-        }
-
-        .live-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #ff0000;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #ff0000;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* --- 3. BACKGROUND ANIMATION (STARS) --- */
+        /* --- 2. BACKGROUND ANIMATION (STARS) --- */
         .stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -82,7 +45,7 @@
             z-index: -1;
         }
 
-        /* --- 4. MAIN CARD --- */
+        /* --- 3. MAIN CARD CONTAINER --- */
         .card {
             position: relative;
             width: 100%;
@@ -95,11 +58,10 @@
             text-align: center;
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
             margin-bottom: 30px;
-            margin-top: 60px;
             animation: fadeInUp 1.5s ease-out;
         }
 
-        /* --- 5. IMAGE & CROWN --- */
+        /* --- 4. IMAGE & CROWN --- */
         .img-wrapper {
             position: relative;
             width: 200px;
@@ -134,7 +96,7 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* --- 6. TEXT STYLES --- */
+        /* --- 5. TEXT STYLES --- */
         .main-title {
             font-family: 'Cinzel', serif;
             font-size: 3rem;
@@ -161,7 +123,7 @@
             margin: 0 auto 30px;
         }
 
-        /* --- 7. BUTTON --- */
+        /* --- 6. BUTTON --- */
         .btn-gold {
             background: transparent;
             color: var(--gold-primary);
@@ -181,7 +143,7 @@
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
         }
 
-        /* --- 8. VIDEO SECTION --- */
+        /* --- 7. VIDEO SECTION --- */
         .video-container {
             max-height: 0;
             overflow: hidden;
@@ -210,68 +172,71 @@
             border: 1px solid #444;
         }
 
-        /* --- 9. FOOTER --- */
+        /* --- 8. FOOTER (DESIGNED BY) - GOLDEN --- */
         .footer-credit {
             margin-top: 20px;
-            font-family: 'Cinzel', serif;
+            font-family: 'Cinzel', serif; /* Font match kiya */
             font-size: 0.8rem;
             letter-spacing: 3px;
+            
+            /* GOLD COLOR & GLOW */
             color: #FFD700; 
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
             font-weight: bold;
+            
             text-transform: uppercase;
             text-align: center;
+            opacity: 1;
         }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Responsive */
         @media (max-width: 600px) {
             .main-title { font-size: 2rem; }
             .crown { font-size: 4rem; top: -60px; }
             .img-wrapper { width: 160px; height: 160px; }
-            .view-counter-box { font-size: 0.75rem; padding: 8px 15px; left: 10px; top: 10px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Background Stars -->
     <div class="stars"></div>
 
-    <!-- VIEW COUNTER -->
-    <div class="view-counter-box">
-        <span class="live-dot"></span>
-        <span style="letter-spacing:1px;">VIEWS:</span>
-        <b id="count-number" style="font-size:1.1rem;">Loading...</b>
-    </div>
-
     <div class="card">
+        
+        <!-- Image with Crown -->
         <div class="img-wrapper">
             <i class="fa-solid fa-crown crown"></i>
             <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="profile-pic">
         </div>
 
+        <!-- Title -->
         <h1 class="main-title">Quaid-e-Azam</h1>
         <h3 style="color:#aaa; letter-spacing:4px; text-transform:uppercase; margin-top:5px; font-size:0.9rem;">Muhammad Ali Jinnah</h3>
 
         <hr style="width: 100px; border: 1px solid var(--gold-primary); margin: 20px auto; opacity: 0.5;">
 
+        <!-- Urdu Poetry -->
         <div class="urdu-poetry">
             ہزاروں سال نرگس اپنی بے نوری پہ روتی ہے<br>
             بڑی مشکل سے ہوتا ہے چمن میں دیدہ ور پیدا
         </div>
 
+        <!-- English Tribute -->
         <p class="powerful-text">
             He was the <strong>Architect of the Impossible</strong>. Standing alone against the tides of history, he carved a nation not with a sword, but with the power of his pen and character.
             <br><br>
             <span style="color:var(--gold-primary);">"There is no power on earth that can undo Pakistan."</span>
         </p>
 
+        <!-- Button -->
         <button class="btn-gold" onclick="toggleHistory()" id="actionBtn">
             Watch History
         </button>
 
+        <!-- Videos -->
         <div class="video-container" id="historyVault">
             <div class="video-grid">
                 <div>
@@ -291,44 +256,12 @@
 
     </div>
 
+    <!-- DESIGNER CREDIT (GOLDEN) -->
     <div class="footer-credit">
         DESIGNED BY MUHAMMAD FAIZAN AHMED
     </div>
 
     <script>
-        // --- FIXED VIEW COUNTER LOGIC ---
-        function updateCounter() {
-            const countElement = document.getElementById("count-number");
-
-            // Step 1: Ek random "Start Number" banate hain taake kabhi bhi 0 na lage
-            const fallbackNumber = Math.floor(Math.random() * (15000 - 12000) + 12000).toLocaleString();
-
-            // Step 2: API Try karte hain
-            fetch("https://api.counterapi.dev/v1/visit/faizan-ahmed-design/quaid-final-v2")
-                .then(res => {
-                    if (!res.ok) throw new Error("Network response was not ok");
-                    return res.json();
-                })
-                .then(data => {
-                    // Agar data sahi aya to show karo
-                    if (data && data.count) {
-                        countElement.innerText = data.count.toLocaleString();
-                    } else {
-                        // Agar data undefined hai to Fallback number show karo
-                        countElement.innerText = fallbackNumber;
-                    }
-                })
-                .catch(err => {
-                    console.log("API Error, switching to fallback mode.");
-                    // Agar Internet/API down hai to "Undefined" ki jagah Fallback number show karo
-                    countElement.innerText = fallbackNumber;
-                });
-        }
-        
-        // Load counter
-        updateCounter();
-
-        // --- VIDEO TOGGLE ---
         function toggleHistory() {
             const vault = document.getElementById('historyVault');
             const btn = document.getElementById('actionBtn');
