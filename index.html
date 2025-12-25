@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Leader | 2025 Tribute</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. CORE VARIABLES --- */
+        :root {
+            --pak-green: #003016;
+            --pak-light-green: #005f2b;
+            --gold: #c5a059;
+            --gold-glow: #e6c888;
+            --white: #ffffff;
+            --glass: rgba(0, 30, 15, 0.85);
+        }
+
+        /* --- 2. ANIMATED BACKGROUND --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pak-green);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 80%, rgba(200, 160, 89, 0.1) 0%, transparent 20%);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- 3. MAIN CONTAINER (GLASS CARD) --- */
+        .royal-card {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: var(--glass);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(197, 160, 89, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            text-align: center;
+            margin: 40px 0;
+            overflow: hidden;
+            animation: slideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Decorative Gold Corner Borders */
+        .royal-card::before, .royal-card::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--gold);
+            transition: all 0.5s ease;
+        }
+        .royal-card::before { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .royal-card::after { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+        /* --- 4. IMAGE STYLING --- */
+        .image-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        /* Crown Icon Overlay */
+        .crown-icon {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--gold);
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+        }
+
+        /* --- 5. TEXT STYLING --- */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            color: var(--white);
+            letter-spacing: 5px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background: linear-gradient(to right, #fff, #c5a059, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .motto-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .motto-box {
+            background: rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+        }
+
+        .desc {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #ddd;
+        }
+
+        /* --- 6. BUTTON STYLING --- */
+        .btn-gold {
+            background: linear-gradient(45deg, var(--gold), #a08035);
+            color: #000;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn-gold::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-gold:hover::after {
+            left: 100%;
+        }
+
+        /* --- 7. VIDEO SECTION --- */
+        #video-panel {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            margin-top: 30px;
+        }
+
+        #video-panel.active {
+            max-height: 1200px;
+            opacity: 1;
+        }
+
+        .vid-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .vid-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* --- 8. ANIMATIONS --- */
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
+            to { box-shadow: 0 0 30px rgba(197, 160, 89, 0.6); border-color: var(--gold-glow); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .vid-grid { grid-template-columns: 1fr; }
+            .royal-card { padding: 30px 20px; width: 95%; }
+            .royal-card::before, .royal-card::after { display: none; } /* Hide corners on small screens */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="royal-card">
+        <!-- Picture Area -->
+        <div class="image-wrapper">
+            <i class="fas fa-crown crown-icon"></i>
+            <img src="https://n.f-a-k.workers.dev/real20picture20of20m.jpeg" alt="Quaid-e-Azam" class="profile-pic">
+        </div>
+
+        <!-- Titles -->
+        <h1>Quaid-e-Azam</h1>
+        <div class="subtitle">Muhammad Ali Jinnah (RA)</div>
+
+        <!-- The 3 Pillars -->
+        <div class="motto-container">
+            <div class="motto-box">UNITY</div>
+            <div class="motto-box">FAITH</div>
+            <div class="motto-box">DISCIPLINE</div>
+        </div>
+
+        <!-- Description -->
+        <p class="desc">
+            "With faith, discipline and selfless devotion to duty, there is nothing worthwhile that you cannot achieve." 
+            <br><br>
+            A tribute to the visionary who altered the course of history and carved a nation on the world map.
+        </p>
+
+        <!-- Button -->
+        <button class="btn-gold" onclick="toggleCinema()" id="cinemaBtn">
+            <i class="fas fa-play-circle" style="margin-right:10px;"></i> Watch History
+        </button>
+
+        <!-- Videos -->
+        <div id="video-panel">
+            <div class="vid-grid">
+                <div>
+                    <video controls controlsList="nodownload">
+                        <source src="https://n.f-a-k.workers.dev/twonationstheoryjinn.mp4" type="video/mp4">
+                    </video>
+                    <div class="vid-label">The Two Nation Theory</div>
+                </div>
+                <div>
+                    <video controls controlsList="nodownload">
+                        <source src="https://n.f-a-k.workers.dev/tealauraofquaid-e-az.mp4" type="video/mp4">
+                    </video>
+                    <div class="vid-label">Rare Historical Footage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCinema() {
+            const panel = document.getElementById('video-panel');
+            const btn = document.getElementById('cinemaBtn');
+            const icon = btn.querySelector('i');
+
+            if (panel.classList.contains('active')) {
+                panel.classList.remove('active');
+                btn.innerHTML = '<i class="fas fa-play-circle" style="margin-right:10px;"></i> Watch History';
+                // Pause videos
+                document.querySelectorAll('video').forEach(vid => vid.pause());
+            } else {
+                panel.classList.add('active');
+                btn.innerHTML = '<i class="fas fa-times-circle" style="margin-right:10px;"></i> Close Gallery';
+            }
+        }
+    </script>
+</body>
+</html>
